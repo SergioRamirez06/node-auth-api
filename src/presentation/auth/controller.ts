@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { AuthService } from "../service/auth-service";
-import { CustomError, RegisterUserDto } from "../../domain";
-
-
+import { CustomError, RegisterUserDto, LoginUserDto } from "../../domain";
 
 export class AuthController {
 
@@ -20,7 +18,7 @@ export class AuthController {
     }
 
     registerUser = ( req: Request, res: Response ) => {
-        const [error, registerUserDto] = RegisterUserDto.create(req.body)
+        const [error, registerUserDto] = RegisterUserDto.create( req.body );
         if( error ) return res.status(400).json({error});
 
         this.authService.registerUser(registerUserDto!)
@@ -29,9 +27,14 @@ export class AuthController {
     }
 
     loginUser = ( req: Request, res: Response ) => {
+        const [error, loginUserDto] = LoginUserDto.create( req.body )
+        if( error ) return res.status(400).json({error});
 
-        res.json('login  user')
+        this.authService.loginUser(loginUserDto!)
+        .then( (user) => res.json( user ) )
+        .catch( error => this.handleError( error, res ) )
     }
+
     emailValidate = ( req: Request, res: Response ) => {
 
         res.json('emailValidate')
