@@ -1,6 +1,19 @@
 # 🔐 Node Auth API
 
-Una API de autenticación y autorización construida con **Node.js**, que incluye registro, login, generación de **JSON Web Tokens (JWT)** y validación de usuarios.  
+Una API de autenticación y autorización construida con **Node.js**, que incluye registro, login, generación de **JSON Web Tokens (JWT)** y validación de usuarios. 
+## 🚀 Instalación
+
+Clona el repositorio y entra en la carpeta:
+
+```bash
+git clone https://github.com/SergioRamirez06/node-skeleton.git
+cd node-skeleton
+
+1. Clonar .env.template a .env y configurar las variables de entorno
+2. Ejecutar `npm install` para instalar las dependencias
+3. En caso de necesitar base de datos, configurar el docker-compose.yml y ejecutar `docker-compose up -d` para levantar los servicios deseados.
+4. Ejecutar `npm run dev` para levantar el proyecto en modo desarrollo.
+```
 
 ## 🚀 Características
 
