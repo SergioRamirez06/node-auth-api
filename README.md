@@ -1,32 +1,32 @@
-# 🌐 NodeSkeleton
+# 🔐 Node Auth API
 
-**NodeSkeleton** es un backend moderno construido con **Node.js** y **Express**, diseñado como un punto de partida sólido, escalable y mantenible para aplicaciones web y móviles.
+Una API de autenticación y autorización construida con **Node.js**, que incluye registro, login, generación de **JSON Web Tokens (JWT)** y validación de usuarios.  
 
-Este proyecto incluye una configuración profesional lista para usar, con manejo de entornos, rutas modulares, middleware personalizable y soporte para despliegues en **Docker**.
+## 🚀 Características
 
----
-
-## ✨ Características
-- ⚡ **Node.js + Express** con estructura modular.  
-- 🔐 **Gestión de entornos** con archivos `.env`.  
-- 🛠️ **Middleware configurable** para validación, seguridad y errores.  
-- 🗂️ **Rutas organizadas** listas para crecer.  
-- 🐳 **Soporte para Docker**, facilitando despliegues consistentes.  
-- 📡 Preparado para **APIs RESTful y microservicios**.  
-- 💾 Integración futura con **bases de datos SQL o NoSQL**.  
+- Registro de usuarios con encriptación de contraseñas (bcrypt).  
+- Inicio de sesión con validación de credenciales.  
+- Generación y validación de tokens JWT.  
+- Middleware para proteger rutas privadas.  
+- Arquitectura modular siguiendo principios SOLID.  
+- Configuración de variables de entorno con `.env`.  
 
 ---
 
-## 🚀 Instalación
+## 📦 Tecnologías utilizadas
 
-Clona el repositorio y entra en la carpeta:
+- [Node.js](https://nodejs.org/)  
+- [Express](https://expressjs.com/)  
+- [MongoDB](https://www.mongodb.com/) con Mongoose  
+- [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)  
+- [bcrypt](https://www.npmjs.com/package/bcrypt)  
+- [dotenv](https://www.npmjs.com/package/dotenv)  
+
+---
+
+## ⚙️ Instalación
+
+1. Clonar el repositorio:
 
 ```bash
-git clone https://github.com/SergioRamirez06/node-skeleton.git
-cd node-skeleton
-
-1. Clonar .env.template a .env y configurar las variables de entorno
-2. Ejecutar `npm install` para instalar las dependencias
-3. En caso de necesitar base de datos, configurar el docker-compose.yml y ejecutar `docker-compose up -d` para levantar los servicios deseados.
-4. Ejecutar `npm run dev` para levantar el proyecto en modo desarrollo
-
+git clone https://github.com/SergioRamirez06/node-auth-api.git
