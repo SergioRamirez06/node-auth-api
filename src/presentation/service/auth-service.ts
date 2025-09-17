@@ -16,14 +16,18 @@ export class AuthService {
         try {
             const user = new UserModel( registerUserDto );
 
-            user.password = BcryptAdapter.hash( registerUserDto.password )
+            user.password = BcryptAdapter.hash( registerUserDto.password );
             await user.save();
 
-            const { password, ...userEntity } = UserEntity.fromObject(user)
+            const { password, ...userEntity } = UserEntity.fromObject(user);
+
+            const token = await JwtAdapter.generateToke({ user: user.id, name: user.name, email: user.email })
+            if( !token ) throw CustomError.internalServer('No se recibió el token de autenticación')
+
 
             return {
                 user: userEntity,
-                token: 'ABC',
+                token: token,
             }; 
             
         } catch (error) {
