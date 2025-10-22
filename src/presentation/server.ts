@@ -23,8 +23,6 @@ export class Server {
     this.routes = routes;
   }
 
-  
-  
   async start() {
     
 

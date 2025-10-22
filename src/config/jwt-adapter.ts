@@ -3,24 +3,28 @@ import { envs } from './envs'
 
 const JWT_SEED = envs.JWT_SEED
 
-
 export class JwtAdapter {
 
-    static generateToke( payload: any, duration:  string = '2h') {
+    static async generateToke( payload: any, duration:  string = '2h') {
 
         return new Promise( ( resolve ) => {
             jwt.sign(payload, JWT_SEED, { expiresIn: duration } as SignOptions, (err, token) => {
 
                 if( err ) return resolve(null)
-
                 return resolve( token );
             })
         })
-
     }
 
     static validateToken( token: string ) {
-        throw Error('Not Implemented')
 
+        return new Promise( (resolve) => {
+
+            jwt.verify(token, JWT_SEED, ( err, decode ) => {
+                
+                if( err ) return resolve(null);
+                return resolve(decode);
+            })
+        })
     }
 }

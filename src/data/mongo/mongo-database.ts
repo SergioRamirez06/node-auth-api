@@ -4,7 +4,7 @@ interface Options {
     dbName: string
 }
 
-export class MongoDatabase{
+export class MongoDatabase {
 
     static async connect ( options: Options ) {
         const { mongoUrl, dbName } = options

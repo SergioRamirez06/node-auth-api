@@ -1,6 +1,3 @@
-
-
-
 export class CustomError extends Error {
 
     constructor(
@@ -9,7 +6,6 @@ export class CustomError extends Error {
     ) {
         super(message)
     }
-
 
     static badRequest(message: string) {
         return new CustomError(400, message);

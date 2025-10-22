@@ -4,7 +4,6 @@ export class BcryptAdapter {
 
     constructor() {}
 
-
     static hash (password: string)  {
         const salt = genSaltSync();
         return hashSync( password, salt )

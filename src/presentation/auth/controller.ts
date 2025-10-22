@@ -23,7 +23,7 @@ export class AuthController {
 
         this.authService.registerUser(registerUserDto!)
         .then( ( user )  => res.json( user ))
-        .catch( error => this.handleError(error, res ) )
+        .catch( error => this.handleError( error, res ) )
     }
 
     loginUser = ( req: Request, res: Response ) => {
@@ -36,7 +36,11 @@ export class AuthController {
     }
 
     emailValidate = ( req: Request, res: Response ) => {
+        const { token } = req.params
+        
+        this.authService.emailValidate(token)
+        .then( () => res.json('Correo validado'))
+        .catch( error => this.handleError( error, res ) )
 
-        res.json('emailValidate')
     }
 }
