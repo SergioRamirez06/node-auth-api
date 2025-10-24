@@ -22,6 +22,7 @@ export class EmailService {
     mailerService: string,
     mailerEmail: string,
     senderEmailPassword: string,
+    private readonly postToProvide: boolean
 
   ) {
 
@@ -38,10 +39,13 @@ export class EmailService {
 
   async sendEmail( options: SendMailOptions ): Promise<boolean> {
 
+
     const { to, subject, htmlBody, attachements = [] } = options;
 
-
     try {
+
+      if( !this.postToProvide ) return true;
+
 
       const sentInformation = await this.transporter.sendMail( {
         to: to,
