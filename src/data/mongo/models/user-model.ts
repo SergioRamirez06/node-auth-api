@@ -27,6 +27,15 @@ const userSchema = new mongoose.Schema({
         default: ['USER_ROLE'],
         enum: ['ADMIN_ROLE', 'USER_ROLE']
     },
+});
+
+userSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function(doc, ret: any) {
+        delete ret._id;
+        delete ret.password
+    },
 })
 
 export const UserModel = mongoose.model('User', userSchema);

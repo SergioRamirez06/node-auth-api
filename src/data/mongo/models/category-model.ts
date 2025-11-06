@@ -4,6 +4,7 @@ const categorySchema = new mongoose.Schema({
     name: {
         type: String,
         required: [ true, "El nombre es obligatorio"],
+        unique: true
     },
     available: {
         type: Boolean,
@@ -15,6 +16,14 @@ const categorySchema = new mongoose.Schema({
         ref: 'User',
         required: true
     }
+});
+
+categorySchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function(doc, ret: any) {
+        delete ret._id;
+    },
 })
 
 export const CategoryModel = mongoose.model('Category', categorySchema);

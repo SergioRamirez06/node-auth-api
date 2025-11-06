@@ -51,7 +51,7 @@ export class AuthService {
 
         const { password, ...userEntity } = UserEntity.fromObject( user );
 
-        const token = await JwtAdapter.generateToke({ id: user.id, name: user.name, email: user.email })
+        const token = await JwtAdapter.generateToke({ id: user.id })
         if( !token ) throw CustomError.internalServer('No se recibió el token de autenticación')
 
         return {
