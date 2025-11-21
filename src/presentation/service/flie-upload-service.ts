@@ -23,12 +23,18 @@ export class FileUploadService {
     async uploadSingle(
         file: UploadedFile,
         folder: string = 'uploads',
-        validExtenxions: string[] = ['png', 'jpg', 'gif']
+        validExtenxions: string[] = ['png', 'jpg', 'gif', 'jpeg']
     ) {
 
         try {
             
-            const fileExtension = file.mimetype.split('/').at(1);
+            const fileExtension = file.mimetype.split('/').at(1) ?? '';
+            if( !validExtenxions.includes(fileExtension) ){
+                throw CustomError.badRequest(`invalid extesion: ${fileExtension}, valid one ${ validExtenxions }`)
+            }
+
+
+
             const destination = path.resolve( __dirname, '../../../', folder );
             this.checkFolder( destination );
 
@@ -44,10 +50,16 @@ export class FileUploadService {
 
     }
 
-    uploadMultiple(
-        file: any[],
+    async uploadMultiple(
+        files: UploadedFile[],
         folder: string = 'uploads',
-        validExtenxions: string[] = ['png', 'jpg', 'gif']
-    ){}
+        validExtenxions: string[] = ['png', 'jpg', 'gif', 'jpeg']
+    ){
+        const fileNames = await Promise.all(
+            files.map( file => this.uploadSingle( file, folder, validExtenxions) )
+        );
+
+        return fileNames;
+    }
     
 }

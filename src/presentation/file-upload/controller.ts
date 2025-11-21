@@ -23,20 +23,24 @@ export class FileUploadController {
     }
 
     uploadFile = async( req: Request, res: Response ) => {
-        const files =  req.files;
-        if ( !files || Object.keys( files ).length === 0 ) {
-            res.status(400).json({ error: 'seleciona una imagen' })
-        }
+        const type = req.params.type;
+        const file = req.body.file.at(0) as UploadedFile;
 
-        const file = req.files!.file as UploadedFile;
-
-        this.fileUploadService.uploadSingle( file )
+        
+        this.fileUploadService.uploadSingle( file, `uploads/${type}` )
             .then( upload => res.json( upload ) )
             .catch( error => this.handleError( error, res ) );
 
     }
 
     uploadMultipleFiles = async( req: Request, res: Response ) => {
-        res.json('fileMultipleUpload')
+        const type = req.params.type;
+        const files = req.body.file as UploadedFile[];
+
+
+        this.fileUploadService.uploadMultiple( files, `uploads/${type}` )
+            .then( upload => res.json( upload ) )
+            .catch( error => this.handleError( error, res ) );
+
     }
 }
